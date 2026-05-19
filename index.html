@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cajas de Cambio PDK — Documentación TFG</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --rojo: #CC0000;
+      --negro: #111111;
+      --gris-oscuro: #333333;
+      --gris-medio: #777777;
+      --gris-suave: #f5f5f5;
+      --linea: #e8e8e8;
+      --blanco: #ffffff;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-weight: 300;
+      background: var(--blanco);
+      color: var(--negro);
+      min-height: 100vh;
+    }
+
+    /* ── CABECERA ── */
+    header {
+      border-bottom: 1px solid var(--linea);
+      padding: 3rem 2rem 2.5rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .header-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--rojo);
+      margin-bottom: 0.75rem;
+    }
+
+    header h1 {
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--negro);
+      line-height: 1.15;
+    }
+
+    header h1 span {
+      color: var(--rojo);
+    }
+
+    .header-sub {
+      margin-top: 0.6rem;
+      font-size: 0.82rem;
+      color: var(--gris-medio);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── IMAGEN PDK ── */
+    .imagen-pdk {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem 0;
+      text-align: center;
+    }
+
+    .imagen-pdk img {
+      width: 100%;
+      max-width: 720px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      filter: grayscale(8%);
+    }
+
+    .imagen-pdk figcaption {
+      margin-top: 0.65rem;
+      font-size: 0.7rem;
+      color: var(--gris-medio);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── DESCRIPCIÓN ── */
+    .descripcion {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 2rem 0;
+      font-size: 0.85rem;
+      color: var(--gris-oscuro);
+      line-height: 1.7;
+      border-bottom: 1px solid var(--linea);
+      padding-bottom: 2rem;
+    }
+
+    /* ── TABLA DE DOCUMENTOS ── */
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 2rem 4rem;
+    }
+
+    .seccion-titulo {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gris-medio);
+      margin-bottom: 1.25rem;
+    }
+
+    .tabla-docs {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .tabla-docs thead tr {
+      border-bottom: 1px solid var(--negro);
+    }
+
+    .tabla-docs th {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gris-medio);
+      padding: 0 0 0.6rem;
+      text-align: left;
+    }
+
+    .tabla-docs th:last-child { text-align: right; }
+
+    .tabla-docs tbody tr {
+      border-bottom: 1px solid var(--linea);
+      transition: background 0.15s;
+    }
+
+    .tabla-docs tbody tr:hover {
+      background: var(--gris-suave);
+    }
+
+    .tabla-docs td {
+      padding: 1.1rem 0.5rem 1.1rem 0;
+      vertical-align: top;
+      font-size: 0.85rem;
+    }
+
+    .doc-titulo {
+      font-weight: 500;
+      color: var(--negro);
+      line-height: 1.35;
+    }
+
+    .doc-fuente {
+      font-size: 0.75rem;
+      color: var(--gris-medio);
+      margin-top: 0.2rem;
+      font-weight: 300;
+    }
+
+    .col-anio {
+      width: 60px;
+      color: var(--gris-oscuro);
+      white-space: nowrap;
+    }
+
+    .col-tipo {
+      width: 90px;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.55rem;
+      border: 1px solid var(--linea);
+      border-radius: 2px;
+      color: var(--gris-oscuro);
+    }
+
+    .badge.pdf   { border-color: #cc000030; color: var(--rojo); }
+    .badge.web   { border-color: #0066cc30; color: #0055aa; }
+    .badge.libro { border-color: #33880030; color: #226600; }
+
+    .col-enlace {
+      width: 80px;
+      text-align: right;
+    }
+
+    .btn-ver {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      color: var(--rojo);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.15s;
+      white-space: nowrap;
+    }
+
+    .btn-ver:hover { border-color: var(--rojo); }
+
+    /* ── PIE ── */
+    footer {
+      border-top: 1px solid var(--linea);
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    footer p {
+      font-size: 0.72rem;
+      color: var(--gris-medio);
+    }
+
+    .footer-marca {
+      font-size: 0.72rem;
+      color: var(--gris-medio);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .footer-marca span {
+      color: var(--rojo);
+      font-weight: 600;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      header, .descripcion, main, footer { padding-left: 1.2rem; padding-right: 1.2rem; }
+      .col-anio, .col-tipo { display: none; }
+      .tabla-docs th:nth-child(2), .tabla-docs th:nth-child(3) { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CABECERA -->
+  <header>
+    <p class="header-eyebrow">Trabajo de Fin de Grado · Electromecánica</p>
+    <h1>Cajas de Cambio <span>PDK</span> — Documentación</h1>
+    <p class="header-sub">Alejandro Dorado Aguayo &nbsp;·&nbsp; IES Barajas · Madrid &nbsp;·&nbsp; Curso 2025–2026</p>
+  </header>
+
+  <!-- IMAGEN PDK -->
+  <figure class="imagen-pdk">
+    <img src="pdk.jpg.png" alt="Sección transversal de la caja de cambios PDK de Porsche" />
+
+  </figure>
+
+  <!-- DESCRIPCIÓN -->
+  <div class="descripcion">
+    Repositorio público de fuentes y documentos técnicos elaborado por <strong>Alejandro Dorado Aguayo</strong>
+    como parte del Trabajo de Fin de Grado del Grado Medio de Electromecánica (IES Barajas, Madrid, 2025–2026).
+    El trabajo analiza la <strong>transmisión de doble embrague PDK de Porsche</strong>
+    (Porsche Doppelkupplungsgetriebe). Los documentos incluyen manuales oficiales de taller, bibliografía técnica
+    y documentación propia. Todos los archivos son de acceso libre para consulta del jurado evaluador.
+  </div>
+
+  <!-- DOCUMENTOS -->
+  <main>
+    <p class="seccion-titulo">Documentos · 6 fuentes</p>
+
+    <table class="tabla-docs">
+      <thead>
+        <tr>
+          <th>Documento / Fuente</th>
+          <th class="col-anio">Año</th>
+          <th class="col-tipo">Tipo</th>
+          <th class="col-enlace">Acceso</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr>
+          <td>
+            <div class="doc-titulo">Información técnica sobre la caja de cambios PDK</div>
+            <div class="doc-fuente">Elaboración propia — Alejandro Dorado Aguayo</div>
+          </td>
+          <td class="col-anio">2026</td>
+          <td class="col-tipo"><span class="badge pdf">PDF</span></td>
+          <td class="col-enlace"><a class="btn-ver" href="información_redactada_pdk.pdf" target="_blank">Ver PDF ↗</a></td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="doc-titulo">Procedimientos de mantenimiento de la transmisión PDK</div>
+            <div class="doc-fuente">Documentación técnica interna</div>
+          </td>
+          <td class="col-anio">2019</td>
+          <td class="col-tipo"><span class="badge pdf">PDF</span></td>
+          <td class="col-enlace"><a class="btn-ver" href="mantenimiento_pdk.pdf" target="_blank">Ver PDF ↗</a></td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="doc-titulo">Manual de Taller Porsche 911 (991) — Todos los modelos</div>
+            <div class="doc-fuente">Porsche AG — Workshop Manual serie 991</div>
+          </td>
+          <td class="col-anio">—</td>
+          <td class="col-tipo"><span class="badge pdf">PDF</span></td>
+          <td class="col-enlace"><a class="btn-ver" href="manual_991_todos_los_modelos.pdf" target="_blank">Ver PDF ↗</a></td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="doc-titulo">Manual Porsche 911 GT3 Cup (2011)</div>
+            <div class="doc-fuente">Steffen Höllwarth — Porsche Motorsport</div>
+          </td>
+          <td class="col-anio">2011</td>
+          <td class="col-tipo"><span class="badge pdf">PDF</span></td>
+          <td class="col-enlace"><a class="btn-ver" href="manual_gt3_cup_2011.pdf" target="_blank">Ver PDF ↗</a></td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="doc-titulo">Manual Porsche 911 GT3 Cup (2014)</div>
+            <div class="doc-fuente">Porsche Motorsport</div>
+          </td>
+          <td class="col-anio">2013</td>
+          <td class="col-tipo"><span class="badge pdf">PDF</span></td>
+          <td class="col-enlace"><a class="btn-ver" href="manual_gt3_cup_2014.pdf" target="_blank">Ver PDF ↗</a></td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="doc-titulo">Transmisiones Porsche — Documentación técnica</div>
